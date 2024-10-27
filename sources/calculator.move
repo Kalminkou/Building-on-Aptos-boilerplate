@@ -8,7 +8,7 @@ module metaschool::calculator_l05
         my_message : String
     }
 
-    public entry fun create_message(account: &signer)
+    public entry fun create_message(account: &signer) // stores a default message on the blockchain
     {
         if (!exists<Message>(signer::address_of(account))){
             let message = Message {
@@ -18,7 +18,7 @@ module metaschool::calculator_l05
         }
     }
 
-    public fun get_message(account: &signer): String acquires Message {
+    public fun get_message(account: &signer): String acquires Message { // retrieves the stored message
         let calculator = borrow_global<Message>(signer::address_of(account));
         calculator.my_message
     }
